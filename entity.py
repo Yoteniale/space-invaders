@@ -1,13 +1,32 @@
-from typing import Self 
+
 
 class Entity :
     """
     Represents an entity in space invaders
 
     Methods: 
-        - trucs
+        - .move() : 
     
     """
+    def __init__(self ):
+        ...
+
+    def move(self, hor : int , ver : int, vel : int):
+        """
+        updates position based on horizontal (hor) and/or vertical (ver) directions and velocity (vel) parameter
+        """
+
+        x, y  = 0, 0
+        if hor > 0 :
+            x += vel
+        if ver > 0 :
+            y += vel
+        if hor < 0:
+            x -= vel
+        if ver < 0:
+            y -= vel
+
+        return x,y
 
 if __name__ == '__main__':
     E = Entity()
