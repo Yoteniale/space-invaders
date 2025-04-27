@@ -1,4 +1,4 @@
-from typing import Self
+
 from entity import Entity
 
 class Bullet(Entity):
@@ -9,6 +9,6 @@ class Bullet(Entity):
         - trucs
     
     """
-    def __init__(self : Self) -> None :
+    def __init__(self ) -> None :
         self.damage = 1
         self.speed = 3
