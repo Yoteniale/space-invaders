@@ -21,7 +21,6 @@
 ## Visual demeanor
 
 **Fix**
-- boundaries for movment within the window
 
 
 **Introduce**

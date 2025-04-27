@@ -8,13 +8,14 @@ CLOCK = pygame.time.Clock()
 RUNNING = True  
 FRAMERATE = 60
 
-#background_color = ((19, 57, 135))
+
 background_color = pygame.Color(19, 57, 135)
 
 x = 640
 y = 535
 radius = 15
 u, v = 0, 0
+vel = 7
 
 player = Player()
 def coords_update(cx : int, cy : int, ax : int, ay : int) :
@@ -24,6 +25,15 @@ def coords_update(cx : int, cy : int, ax : int, ay : int) :
 	cx += ax
 	cy += ay
 	return cx, cy
+
+
+def coords_valid_y(y : int, dec : int) -> bool :
+	"""
+	verifies if a coordinate is valid (meaning still in the window)
+	"""
+	if y-dec > 0 and y+dec < 720 :
+		return True
+	return False
 
 
 
@@ -45,19 +55,20 @@ while RUNNING:
 	
 	userInput = pygame.key.get_pressed()
 
-	if userInput[pygame.K_LEFT]:
-		u, v = player.move(-1, 0, 7)
-		x, y = coords_update(x, y, u, v)
-	if userInput[pygame.K_RIGHT]:
-		u, v = player.move(1, 0, 7)
-		x, y = coords_update(x, y, u, v)
-	if userInput[pygame.K_UP]:
-		u, v = player.move(0, -1, 7)
-		x, y = coords_update(x, y, u, v)
-	if userInput[pygame.K_DOWN]:
-		u, v = player.move(0, 1, 7)
-		x, y = coords_update(x, y, u, v)
 
+	if userInput[pygame.K_LEFT] and x > 0+radius+vel:
+		u, v = player.move(-1, 0, vel)
+		x, y = coords_update(x, y, u, v)
+	if userInput[pygame.K_RIGHT] and x < 1280-radius-vel:
+		u, v = player.move(1, 0, vel)
+		x, y = coords_update(x, y, u, v)
+	if userInput[pygame.K_UP] and y > 0+radius+vel:
+		u, v = player.move(0, -1, vel)
+		x, y = coords_update(x, y, u, v)
+	if userInput[pygame.K_DOWN] and y < 720-radius-vel:
+		u, v = player.move(0, 1, vel)
+		x, y = coords_update(x, y, u, v)
+	print(x, y)
 
 
 	pygame.Surface.fill(SCREEN, background_color)
@@ -65,3 +76,9 @@ while RUNNING:
 	pygame.display.update()
 
 	CLOCK.tick(FRAMERATE)
+
+"""
+To set coordinates boundaries 
+0 < x < 1280     et  0 < y <720
+PRBLM : cricle stuck on the sides
+"""
