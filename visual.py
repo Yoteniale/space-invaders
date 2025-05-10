@@ -68,7 +68,7 @@ while RUNNING:
 	if userInput[pygame.K_DOWN] and y < 720-radius-vel:
 		u, v = player.move(0, 1, vel)
 		x, y = coords_update(x, y, u, v)
-	print(x, y)
+
 
 
 	pygame.Surface.fill(SCREEN, background_color)
@@ -77,8 +77,3 @@ while RUNNING:
 
 	CLOCK.tick(FRAMERATE)
 
-"""
-To set coordinates boundaries 
-0 < x < 1280     et  0 < y <720
-PRBLM : cricle stuck on the sides
-"""
