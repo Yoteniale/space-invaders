@@ -1,4 +1,4 @@
-
+from math import sqrt
 
 class Entity :
     """
@@ -17,6 +17,9 @@ class Entity :
         """
 
         x, y  = 0, 0
+        if hor != 0 and ver != 0 :
+            vel /= sqrt(2)
+            print(vel)
         if hor > 0 :
             x += vel
         if ver > 0 :

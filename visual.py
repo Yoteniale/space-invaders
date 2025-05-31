@@ -57,17 +57,32 @@ while RUNNING:
 
 
 	if userInput[pygame.K_LEFT] and x > 0+radius+vel:
-		u, v = player.move(-1, 0, vel)
-		x, y = coords_update(x, y, u, v)
-	if userInput[pygame.K_RIGHT] and x < 1280-radius-vel:
-		u, v = player.move(1, 0, vel)
-		x, y = coords_update(x, y, u, v)
-	if userInput[pygame.K_UP] and y > 0+radius+vel:
-		u, v = player.move(0, -1, vel)
-		x, y = coords_update(x, y, u, v)
-	if userInput[pygame.K_DOWN] and y < 720-radius-vel:
-		u, v = player.move(0, 1, vel)
-		x, y = coords_update(x, y, u, v)
+		if userInput[pygame.K_DOWN] and y < 720-radius-vel:
+			u, v = player.move(-1, 1, vel)
+			x, y = coords_update(x, y, u, v)
+		elif userInput[pygame.K_UP] and y > 0+radius+vel :
+			u, v = player.move(-1, -1, vel)
+			x, y = coords_update(x, y, u, v)
+		else :
+			u, v = player.move(-1, 0, vel)
+			x, y = coords_update(x, y, u, v)
+	elif userInput[pygame.K_RIGHT] and x < 1280-radius-vel:
+		if userInput[pygame.K_DOWN] and y < 720-radius-vel:
+			u, v = player.move(1, 1, vel)
+			x, y = coords_update(x, y, u, v)
+		elif userInput[pygame.K_UP] and y > 0+radius+vel :
+			u, v = player.move(1, -1, vel)
+			x, y = coords_update(x, y, u, v)
+		else : 
+			u, v = player.move(1, 0, vel)
+			x, y = coords_update(x, y, u, v)
+	else :
+		if userInput[pygame.K_UP] and y > 0+radius+vel:
+			u, v = player.move(0, -1, vel)
+			x, y = coords_update(x, y, u, v)
+		if userInput[pygame.K_DOWN] and y < 720-radius-vel:
+			u, v = player.move(0, 1, vel)
+			x, y = coords_update(x, y, u, v)
 
 
 
